@@ -1,0 +1,428 @@
+name: aurad_fatiha
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  audioplayers: ^6.0.0
+  excel: ^4.0.3
+  timezone: ^0.9.2
+  intl: ^0.19.0
+  audioplayers_web: ^5.0.0
+  flutter_colorpicker: ^1.0.3
+  flare_flutter: ^3.0.0
+  permission_handler: ^11.3.0
+  csv: 6.0.0
+  path_provider: ^2.0.3 # For accessing device file system (optional)
+  cupertino_icons: ^1.0.2
+  introduction_screen: ^3.1.12
+  flutter_svg: ^2.0.10+1
+  convex_bottom_bar: ^3.0.0
+  http: ^1.2.1
+  shared_preferences: ^2.0.13
+  font_awesome_flutter: ^10.7.0
+  flutter_spinkit: ^5.1.0
+  image_picker: ^1.0.7
+  html: ^0.15.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  #flutter_icons: ^0.10.1
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.10
+  flutter_lints: ^4.0.0
+
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/arabic_data.xlsx
+    - assets/assets/a1.mp3
+    - assets/assets/a2.mp3
+    - assets/assets/a3.mp3
+    - assets/assets/a4.mp3
+    - assets/assets/a5.mp3
+    - assets/assets/a6.mp3
+    - assets/assets/a7.mp3
+    - assets/assets/a8.mp3
+    - assets/assets/a9.mp3
+    - assets/assets/a10.mp3
+    - assets/assets/a11.mp3
+    - assets/assets/a12.mp3
+    - assets/assets/a13.mp3
+    - assets/assets/a14.mp3
+    - assets/assets/a15.mp3
+    - assets/assets/a16.mp3
+    - assets/assets/a17.mp3
+    - assets/assets/a18.mp3
+    - assets/assets/a19.mp3
+    - assets/assets/a20.mp3
+    - assets/assets/a21.mp3
+    - assets/assets/a22.mp3
+    - assets/assets/a23.mp3
+    - assets/assets/a24.mp3
+    - assets/assets/a25.mp3
+    - assets/assets/a26.mp3
+    - assets/assets/a27.mp3
+    - assets/assets/a28.mp3
+    - assets/assets/a29.mp3
+    - assets/assets/a30.mp3
+    - assets/assets/a31.mp3
+    - assets/assets/a32.mp3
+    - assets/assets/a33.mp3
+    - assets/assets/a34.mp3
+    - assets/assets/a35.mp3
+    - assets/assets/a36.mp3
+    - assets/assets/a37.mp3
+    - assets/assets/a38.mp3
+    - assets/assets/a39.mp3
+    - assets/assets/a40.mp3
+    - assets/assets/a41.mp3
+    - assets/assets/a42.mp3
+    - assets/assets/a43.mp3
+    - assets/assets/a44.mp3
+    - assets/assets/a45.mp3
+    - assets/assets/a46.mp3
+    - assets/assets/a47.mp3
+    - assets/assets/a48.mp3
+    - assets/assets/a49.mp3
+    - assets/assets/a50.mp3
+    - assets/assets/a51.mp3
+    - assets/assets/a52.mp3
+    - assets/assets/a53.mp3
+    - assets/assets/a54.mp3
+    - assets/assets/a55.mp3
+    - assets/assets/a56.mp3
+    - assets/assets/a57.mp3
+    - assets/assets/a58.mp3
+    - assets/assets/a59.mp3
+    - assets/assets/a60.mp3
+    - assets/assets/a61.mp3
+    - assets/assets/a62.mp3
+    - assets/assets/a63.mp3
+    - assets/assets/a64.mp3
+    - assets/assets/a65.mp3
+    - assets/assets/a66.mp3
+    - assets/assets/a67.mp3
+    - assets/assets/a68.mp3
+    - assets/assets/a69.mp3
+    - assets/assets/a70.mp3
+    - assets/assets/a71.mp3
+    - assets/assets/a72.mp3
+    - assets/assets/a73.mp3
+    - assets/assets/a74.mp3
+    - assets/assets/a75.mp3
+    - assets/assets/a76.mp3
+    - assets/assets/a77.mp3
+    - assets/assets/a78.mp3
+    - assets/assets/a79.mp3
+    - assets/assets/a80.mp3
+    - assets/assets/a81.mp3
+    - assets/assets/a82.mp3
+    - assets/assets/a83.mp3
+    - assets/assets/a84.mp3
+    - assets/assets/a85.mp3
+    - assets/assets/a86.mp3
+    - assets/assets/a87.mp3
+    - assets/assets/a88.mp3
+    - assets/assets/a89.mp3
+    - assets/assets/a90.mp3
+    - assets/assets/a91.mp3
+    - assets/assets/a92.mp3
+    - assets/assets/a93.mp3
+    - assets/assets/a94.mp3
+    - assets/assets/a95.mp3
+    - assets/assets/a96.mp3
+    - assets/assets/a97.mp3
+    - assets/assets/a98.mp3
+    - assets/assets/a99.mp3
+    - assets/assets/a100.mp3
+    - assets/assets/a101.mp3
+    - assets/assets/a102.mp3
+    - assets/assets/a103.mp3
+    - assets/assets/a104.mp3
+    - assets/assets/a105.mp3
+    - assets/assets/a106.mp3
+    - assets/assets/a107.mp3
+    - assets/assets/a108.mp3
+    - assets/assets/a109.mp3
+    - assets/assets/a110.mp3
+    - assets/assets/a111.mp3
+    - assets/assets/a112.mp3
+    - assets/assets/a113.mp3
+    - assets/assets/a114.mp3
+    - assets/assets/a115.mp3
+    - assets/assets/a116.mp3
+    - assets/assets/a117.mp3
+    - assets/assets/a118.mp3
+    - assets/assets/a119.mp3
+    - assets/assets/a120.mp3
+    - assets/assets/a121.mp3
+    - assets/assets/a122.mp3
+    - assets/assets/a123.mp3
+    - assets/assets/a124.mp3
+    - assets/assets/a125.mp3
+    - assets/assets/a126.mp3
+    - assets/assets/a127.mp3
+    - assets/assets/a128.mp3
+    - assets/assets/a129.mp3
+    - assets/assets/a130.mp3
+    - assets/assets/a131.mp3
+    - assets/assets/a132.mp3
+    - assets/assets/a133.mp3
+    - assets/assets/a134.mp3
+    - assets/assets/a135.mp3
+    - assets/assets/a136.mp3
+    - assets/assets/a137.mp3
+    - assets/assets/a138.mp3
+    - assets/assets/a139.mp3
+    - assets/assets/a140.mp3
+    - assets/assets/a141.mp3
+    - assets/assets/a142.mp3
+    - assets/assets/a143.mp3
+    - assets/assets/a144.mp3
+    - assets/assets/a145.mp3
+    - assets/assets/a146.mp3
+    - assets/assets/a147.mp3
+    - assets/assets/a148.mp3
+    - assets/assets/a149.mp3
+    - assets/assets/a150.mp3
+    - assets/assets/a151.mp3
+    - assets/assets/a152.mp3
+    - assets/assets/a153.mp3
+    - assets/assets/a154.mp3
+    - assets/assets/a155.mp3
+    - assets/assets/a156.mp3
+    - assets/assets/a157.mp3
+    - assets/assets/a158.mp3
+    - assets/assets/a159.mp3
+    - assets/assets/a160.mp3
+    - assets/assets/a161.mp3
+    - assets/assets/a162.mp3
+    - assets/assets/a163.mp3
+    - assets/assets/a164.mp3
+    - assets/assets/a165.mp3
+    - assets/assets/a166.mp3
+    - assets/assets/a167.mp3
+    - assets/assets/a168.mp3
+    - assets/assets/a169.mp3
+    - assets/assets/a170.mp3
+    - assets/assets/a171.mp3
+    - assets/assets/a172.mp3
+    - assets/assets/a173.mp3
+    - assets/assets/a174.mp3
+    - assets/assets/a175.mp3
+    - assets/assets/a176.mp3
+    - assets/assets/a177.mp3
+    - assets/assets/a178.mp3
+    - assets/assets/a179.mp3
+    - assets/assets/a180.mp3
+    - assets/assets/a181.mp3
+    - assets/assets/a182.mp3
+    - assets/assets/a183.mp3
+    - assets/assets/a184.mp3
+    - assets/assets/a185.mp3
+    - assets/assets/a186.mp3
+    - assets/assets/a187.mp3
+    - assets/assets/a188.mp3
+    - assets/assets/a189.mp3
+    - assets/assets/a190.mp3
+    - assets/assets/a191.mp3
+    - assets/assets/a192.mp3
+    - assets/assets/a193.mp3
+    - assets/assets/a194.mp3
+    - assets/assets/a195.mp3
+    - assets/assets/a196.mp3
+    - assets/assets/a197.mp3
+    - assets/assets/a198.mp3
+    - assets/assets/a199.mp3
+    - assets/assets/A200.mp3
+    - assets/assets/A201.mp3
+    - assets/assets/A202.mp3
+    - assets/assets/A203.mp3
+    - assets/assets/A204.mp3
+    - assets/assets/A205.mp3
+    - assets/assets/A206.mp3
+    - assets/assets/A207.mp3
+    - assets/assets/A208.mp3
+    - assets/assets/A209.mp3
+    - assets/assets/A210.mp3
+    - assets/assets/A211.mp3
+    - assets/assets/A212.mp3
+    - assets/assets/A213.mp3
+    - assets/assets/A214.mp3
+    - assets/assets/A215.mp3
+    - assets/assets/A216.mp3
+    - assets/assets/A217.mp3
+    - assets/assets/A218.mp3
+    - assets/assets/A219.mp3
+    - assets/assets/A220.mp3
+    - assets/assets/A221.mp3
+    - assets/assets/A222.mp3
+    - assets/assets/A223.mp3
+    - assets/assets/A224.mp3
+    - assets/assets/A225.mp3
+    - assets/assets/A226.mp3
+    - assets/assets/A227.mp3
+    - assets/assets/A228.mp3
+    - assets/assets/A229.mp3
+    - assets/assets/A230.mp3
+    - assets/assets/A230.mp3
+    - assets/assets/A231.mp3
+    - assets/assets/A232.mp3
+    - assets/assets/A233.mp3
+    - assets/assets/A234.mp3
+    - assets/assets/A235.mp3
+    - assets/assets/A236.mp3
+    - assets/assets/A237.mp3
+    - assets/assets/A238.mp3
+    - assets/assets/A239.mp3
+    - assets/assets/A240.mp3
+    - assets/assets/A241.mp3
+    - assets/assets/A242.mp3
+    - assets/assets/A243.mp3
+    - assets/assets/A244.mp3
+    - assets/assets/A245.mp3
+    - assets/assets/A246.mp3
+    - assets/assets/A247.mp3
+    - assets/assets/A248.mp3
+    - assets/assets/A249.mp3
+    - assets/assets/A250.mp3
+    - assets/assets/A251.mp3
+    - assets/assets/A252.mp3
+    - assets/assets/A253.mp3
+    - assets/assets/A254.mp3
+    - assets/assets/A255.mp3
+    - assets/assets/A256.mp3
+    - assets/assets/A257.mp3
+    - assets/assets/A258.mp3
+    - assets/assets/A259.mp3
+    - assets/assets/A260.mp3
+    - assets/assets/A261.mp3
+    - assets/assets/A262.mp3
+    - assets/assets/A263.mp3
+    - assets/assets/A264.mp3
+    - assets/assets/A265.mp3
+    - assets/assets/A266.mp3
+    - assets/assets/A267.mp3
+    - assets/assets/A268.mp3
+    - assets/assets/A269.mp3
+    - assets/assets/A270.mp3
+    - assets/assets/A271.mp3
+    - assets/assets/A272.mp3
+    - assets/assets/A273.mp3
+    - assets/assets/A274.mp3
+    - assets/assets/A275.mp3
+    - assets/assets/A276.mp3
+    - assets/assets/A277.mp3
+    - assets/assets/A278.mp3
+    - assets/assets/A279.mp3
+    - assets/assets/A280.mp3
+    - assets/assets/A281.mp3
+    - assets/assets/A282.mp3
+    - assets/assets/A283.mp3
+    - assets/assets/A284.mp3
+    - assets/assets/A285.mp3
+    - assets/assets/A286.mp3
+    - assets/assets/A287.mp3
+    - assets/assets/A288.mp3
+    - assets/assets/A289.mp3
+    - assets/assets/A290.mp3
+    - assets/assets/A291.mp3
+    - assets/assets/A292.mp3
+    - assets/assets/A293.mp3
+    - assets/assets/A294.mp3
+    - assets/assets/A295.mp3
+    - assets/assets/A296.mp3
+    - assets/assets/A297.mp3
+    - assets/assets/A298.mp3
+    - assets/assets/A299.mp3
+    - assets/assets/A300.mp3
+    - assets/assets/A301.mp3
+    - assets/assets/A302.mp3
+    - assets/assets/A303.mp3
+    - assets/assets/A304.mp3
+    - assets/assets/A305.mp3
+    - assets/assets/A306.mp3
+    - assets/assets/A307.mp3
+    - assets/assets/A308.mp3
+    - assets/assets/A309.mp3
+    - assets/assets/A310.mp3
+    - assets/assets/A311.mp3
+    - assets/assets/A312.mp3
+    - assets/assets/A313.mp3
+    - assets/assets/A314.mp3
+    - assets/assets/A315.mp3
+    - assets/assets/A316.mp3
+    - assets/assets/A317.mp3
+    - assets/assets/A318.mp3
+    - assets/assets/A319.mp3
+    - assets/assets/A320.mp3
+    - assets/assets/A321.mp3
+    - assets/assets/A322.mp3
+    - assets/assets/A323.mp3
+    - assets/assets/A324.mp3
+    - assets/assets/A325.mp3
+    - assets/assets/A326.mp3
+    - assets/assets/A327.mp3
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    - assets/lantern.png
+    - assets/anim.gif
+    - assets/upper.png
+    - assets/icon/play.png
+    - assets/icon/pause.png
+    - assets/icon/forward.png
+    - assets/icon/backward.png
+    - assets/icon/back.png
+    - assets/dev.png
+    - assets/set.png
+    - assets/start.png
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          style: italic
+    - family: Indopak
+      fonts:
+        - asset: assets/fonts/Indopak-Regular.ttf
+    - family: read
+      fonts:
+        - asset: assets/fonts/read.ttf
