@@ -312,187 +312,222 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Aurad e Fatiha'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Image.asset(
-            'assets/icon/back.png',
-            width: 24,
-            height: 24,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(110.0),
+        child: AppBar(
+          backgroundColor: Color(0xFF3c7962), // Changed to match SalamScreen
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          automaticallyImplyLeading: false,
+          leading: Container( // Encircle back button
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white.withOpacity(0.0),
+            ),
+          ),
+          title: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Center(
+                child: Container(
+                  width: double.infinity, // Ensure it takes the full width
+                  child: Text(
+                    'Aurad e Fatiha',
+                    textAlign: TextAlign.center, // Center the text horizontally
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black.withOpacity(0.5),
+                          offset: Offset(2, 2),
+                          blurRadius: 4,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings, color: Colors.white),
+              onPressed: openSettings,
+            ),
+          ],
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: openSettings,
-          ),
-        ],
       ),
+
       body: excelData.isEmpty
           ? Center(child: CircularProgressIndicator())
           : Column(
         children: [
-      Expanded(
-      child: ListView.builder(
-      itemCount: excelData.length,
-        itemBuilder: (context, index) {
-          final entry = excelData[index];
-          final serialNo = entry[0]; // Assuming serial number is at index 0
-          final arabicText = entry[1];
-          final audioName = entry[3];
-
-          return Card(
-            elevation: 4,
-            margin: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            child: InkWell(
-              onTap: () {
+          Expanded(
+            child: ListView.builder(
+              itemCount: excelData.length,
+              itemBuilder: (context, index) {
+                final entry = excelData[index];
+                final serialNo = entry[0]; // Assuming serial number is at index 0
+                final arabicText = entry[1];
                 final audioName = entry[3];
-                playAudio(audioName, index);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 40,
-                      child: Center(
-                        child: CircleAvatar(
-                          backgroundColor: Colors.purple.shade300,
-                          child: Text(
-                            serialNo,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10), // Margin before Arabic text
-                    Expanded(
-                      child: Container(
-                        child: CustomPaint(
-                          painter: _ProgressPainter(
-                            isPlaying: isPlaying,
-                            currentIndex: index,
-                            duration: duration,
-                            position: position,
-                            currentIndexPosition: currentlyPlayingIndex,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                height: 16,
-                                width: double.infinity,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 10),
+
+                return Card(
+                  elevation: 4,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      final audioName = entry[3];
+                      playAudio(audioName, index);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 40,
+                            child: Center(
+                              child: CircleAvatar(
+                                backgroundColor: Color(0xFF3c7962),
                                 child: Text(
-                                  arabicText,
-                                  textAlign: TextAlign.right,
+                                  serialNo,
                                   style: TextStyle(
-                                    fontSize: arabicFontSize,
-                                    color: Colors.black,
-                                    fontFamily: 'Indopak',
-                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          SizedBox(width: 10), // Margin before Arabic text
+                          Expanded(
+                            child: Container(
+                              child: CustomPaint(
+                                painter: _ProgressPainter(
+                                  isPlaying: isPlaying,
+                                  currentIndex: index,
+                                  duration: duration,
+                                  position: position,
+                                  currentIndexPosition: currentlyPlayingIndex,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    SizedBox(
+                                      height: 16,
+                                      width: double.infinity,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        arabicText,
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          fontSize: arabicFontSize,
+                                          color: Colors.black,
+                                          fontFamily: 'Indopak',
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
-    ),
-    Container(
-    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-    decoration: BoxDecoration(
-    color: Colors.purple.shade200,
-    borderRadius: BorderRadius.circular(16),
-    ),
-    child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-    IconButton(
-    icon: Image.asset(
-    'assets/icon/backward.png',
-    width: 24,
-    height: 24,
-    ),
-    onPressed: playPreviousAudio,
-    color: Colors.black,
-    ),
-    IconButton(
-    icon: Image.asset(
-    isPlaying ? 'assets/icon/pause.png' : 'assets/icon/play.png',
-    width: 24,
-    height: 24,
-    ),
-    onPressed: handlePlayPauseButton,
-    color: Colors.black,
-    ),
-    IconButton(
-    icon: Image.asset(
-    'assets/icon/forward.png',
-    width: 24,
-    height: 24,
-    ),
-    onPressed: playNextAudio,
-    color: Colors.red,
-    ),
-    IconButton(
-    icon: Icon(
-    isRepeatMode ? Icons.repeat : Icons.repeat_one,
-    color: isRepeatMode ? Colors.blue : Colors.black,
-    ),
-    onPressed: toggleRepeatMode,),
-      Expanded(
-        child: Slider(
-          value: duration.inSeconds == 0
-              ? 0.0
-              : _sliderValue.clamp(0.0, duration.inSeconds.toDouble()) /
-              duration.inSeconds.toDouble(),
-          max: 1.0,
-          onChanged: (value) {
-            final newPosition = Duration(
-              seconds: (value * duration.inSeconds).round(),
-            );
-            audioPlayer.seek(newPosition);
-            setState(() {
-              _sliderValue = newPosition.inSeconds.toDouble();
-            });
-          },
-        ),
-      ),
-      Text(
-        duration.inSeconds == 0
-            ? '0:00 / 0:00'
-            : '${Duration(seconds: _sliderValue.round()).toString().split('.')[0]} / ${Duration(seconds: duration.inSeconds).toString().split('.')[0]}',
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-          color: Colors.black,
-        ),
-      ),
-    ],
-    ),
-    ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            decoration: BoxDecoration(
+              color: Color(0xFF77bba2),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: Image.asset(
+                    'assets/icon/backward.png',
+                    width: 24,
+                    height: 24,
+                  ),
+                  onPressed: playPreviousAudio,
+                  color: Colors.black,
+                ),
+                IconButton(
+                  icon: Image.asset(
+                    isPlaying ? 'assets/icon/pause.png' : 'assets/icon/play.png',
+                    width: 24,
+                    height: 24,
+                  ),
+                  onPressed: handlePlayPauseButton,
+                  color: Colors.black,
+                ),
+                IconButton(
+                  icon: Image.asset(
+                    'assets/icon/forward.png',
+                    width: 24,
+                    height: 24,
+                  ),
+                  onPressed: playNextAudio,
+                  color: Colors.red,
+                ),
+                IconButton(
+                  icon: Icon(
+                    isRepeatMode ? Icons.repeat : Icons.repeat_one,
+                    color: isRepeatMode ? Colors.blue : Colors.black,
+                  ),
+                  onPressed: toggleRepeatMode,),
+                Expanded(
+                  child: Slider(
+                    value: duration.inSeconds == 0
+                        ? 0.0
+                        : _sliderValue.clamp(0.0, duration.inSeconds.toDouble()) /
+                        duration.inSeconds.toDouble(),
+                    max: 1.0,
+                    onChanged: (value) {
+                      final newPosition = Duration(
+                        seconds: (value * duration.inSeconds).round(),
+                      );
+                      audioPlayer.seek(newPosition);
+                      setState(() {
+                        _sliderValue = newPosition.inSeconds.toDouble();
+                      });
+                    },
+                  ),
+                ),
+                Text(
+                  duration.inSeconds == 0
+                      ? '0:00 / 0:00'
+                      : '${Duration(seconds: _sliderValue.round()).toString().split('.')[0]} / ${Duration(seconds: duration.inSeconds).toString().split('.')[0]}',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -519,7 +554,7 @@ class _ProgressPainter extends CustomPainter {
     if (!isPlaying || currentIndexPosition != currentIndex) return;
 
     Paint paint = Paint()
-      ..color = Colors.purple.withOpacity(0.3)
+      ..color = Colors.green.withOpacity(0.3)
       ..style = PaintingStyle.fill;
 
     canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint); // Draw complete static overlay

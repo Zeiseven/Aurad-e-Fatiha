@@ -6,14 +6,14 @@ import 'package:excel/excel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart'; // Color Picker package
 
-class QuranScreen extends StatefulWidget {
-  const QuranScreen({Key? key}) : super(key: key);
+class RiqabScreen extends StatefulWidget {
+  const RiqabScreen({Key? key}) : super(key: key);
 
   @override
-  _QuranScreenState createState() => _QuranScreenState();
+  _RiqabScreenState createState() => _RiqabScreenState();
 }
 
-class _QuranScreenState extends State<QuranScreen> {
+class _RiqabScreenState extends State<RiqabScreen> {
   List<List<String>> excelData = [];
   late double arabicFontSize;
   late double translationFontSize;
@@ -24,7 +24,7 @@ class _QuranScreenState extends State<QuranScreen> {
   bool isAutoScrolling = false;
   String selectedFont = 'Indopak'; // Default font
 
-  Color backgroundColor = Color(0xffdfe6e3); // Default background color
+  Color backgroundColor = Color(0xffdfe6e3); // Changed to match SalamScreen
   Color textColor = Colors.black; // Default text color
 
   // List of available fonts
@@ -92,8 +92,8 @@ class _QuranScreenState extends State<QuranScreen> {
     var excel = Excel.decodeBytes(bytes);
     var table = excel.tables['Sheet1'];
 
-    // Iterate over the rows but only load up to 273 rows
-    for (int i = 0; i < 273 && i < table!.rows.length; i++) {
+    // Load entries from 273 onwards
+    for (int i = 273; i < table!.rows.length; i++) {
       var row = table.rows[i];
       excelData.add([row[1]?.value.toString() ?? '', row[2]?.value.toString() ?? '']);
     }
@@ -393,7 +393,7 @@ class _QuranScreenState extends State<QuranScreen> {
               padding: const EdgeInsets.only(top: 50),
               child: Center(
                 child: Text(
-                  'Aurad e Fatiha',
+                  'Dua e Riqab',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -446,38 +446,13 @@ class _QuranScreenState extends State<QuranScreen> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                  if (index == 264) // Check if it is entry 265 (0-indexed)
-                    IconButton(
-                      icon: Icon(Icons.info, color: Colors.blue),
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Information'),
-                              content: Text(
-                                "This Salam Is Not Actual Part Of Aurad e Fatiha, However Was Added Later By Religious Scholars",
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('OK'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                    ),
                 ],
               ),
             ),
           );
         },
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Container( // Added bottom bar to match SalamScreen
         height: 30,
         decoration: BoxDecoration(
           color: Color(0xFF3c7962),

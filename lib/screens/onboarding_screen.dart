@@ -68,7 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      "Read Aurad e Fatiha With Urdu Translation ",
+                      "Read Aurad e Fatiha , Dua e Riqab , Dua e Subh With Urdu Translation ",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16),
                     ),

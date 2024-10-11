@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.7+8
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -38,6 +38,7 @@ dependencies:
   introduction_screen: ^3.1.12
   flutter_svg: ^2.0.10+1
   convex_bottom_bar: ^3.0.0
+  scrollable_positioned_list: ^0.3.5
   http: ^1.2.1
   shared_preferences: ^2.0.13
   font_awesome_flutter: ^10.7.0
@@ -53,6 +54,8 @@ dev_dependencies:
   flutter_native_splash: ^2.3.10
   flutter_lints: ^4.0.0
 
+
+
 flutter:
 
   # The following line ensures that the Material Icons font is
@@ -62,6 +65,8 @@ flutter:
 
   assets:
     - assets/
+    - assets/aurad.json
+    - assets/dua.xlsx
     - assets/arabic_data.xlsx
     - assets/assets/a1.mp3
     - assets/assets/a2.mp3
@@ -409,7 +414,9 @@ flutter:
     - assets/icon/forward.png
     - assets/icon/backward.png
     - assets/icon/back.png
-    - assets/dev.png
+    - assets/dev
+    - assets/logoo.png
+    - assets/icon/logoo.png
     - assets/set.png
     - assets/start.png
 
@@ -423,6 +430,26 @@ flutter:
     - family: Indopak
       fonts:
         - asset: assets/fonts/Indopak-Regular.ttf
+
+    - family: Saleem
+      fonts:
+        - asset: assets/fonts/Saleem.ttf
+
+    - family: Muhamadi
+      fonts:
+        - asset: assets/fonts/Muhamadi.ttf
+
+    - family: Musharaf
+      fonts:
+        - asset: assets/fonts/Musharaf.ttf
+
+
+    - family: Qalam
+      fonts:
+        - asset: assets/fonts/Qalam.ttf
+
     - family: read
       fonts:
         - asset: assets/fonts/read.ttf
+
+

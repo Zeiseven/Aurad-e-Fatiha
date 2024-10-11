@@ -1,0 +1,25 @@
+flutter_launcher_icons:
+  image_path: "assets/icon/logoo.png"
+
+  android: "launcher_icon"
+  min_sdk_android: 21
+  # adaptive_icon_background: "assets/icon/background.png"
+  # adaptive_icon_foreground: "assets/icon/foreground.png"
+
+  ios: true
+  remove_alpha_channel_ios: true
+
+  web:
+    generate: true
+    image_path: "assets/icon/logoo.png"  # corrected path
+    background_color: "#ffffff"  # Replace with your color
+    theme_color: "#000000"  # Replace with your color
+
+  windows:
+    generate: true
+    image_path: "assets/icon/logoo.png"  # corrected path
+    icon_size: 48  # min:48, max:256, default: 48
+
+  macos:
+    generate: true
+    image_path: "assets/icon/logoo.png"  # corrected path

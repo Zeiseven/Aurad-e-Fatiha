@@ -1,4 +1,4 @@
-package com.example.aurad_fatiha
+package com.arsalanmurtaza.auradefatiha
 
 import io.flutter.embedding.android.FlutterActivity
 

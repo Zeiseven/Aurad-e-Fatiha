@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:excel/excel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart'; // Color picker package
 
 class SalamScreen extends StatefulWidget {
   const SalamScreen({Key? key}) : super(key: key);
@@ -15,27 +16,38 @@ class SalamScreen extends StatefulWidget {
 class _SalamScreenState extends State<SalamScreen> {
   List<List<String>> arabicData = [];
   double fontSize = 30; // Initial font size
+  String selectedFont = 'Indopak'; // Default font
+  Color backgroundColor = Color(0xffdfe6e3); // Default background color
+  Color textColor = Colors.black; // Default text color
 
   @override
   void initState() {
     super.initState();
-    loadFontSettings(); // Load font settings when the widget initializes
+    loadSettings(); // Load all shared settings when the widget initializes
     loadArabicData();
   }
 
-  Future<void> loadFontSettings() async {
+  Future<void> loadSettings() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      // Load font size from SharedPreferences, if available
-      fontSize = prefs.getDouble('fontSize') ?? 30;
+      fontSize = prefs.getDouble('arabicFontSize') ?? 30; // Load font size
+      selectedFont = prefs.getString('selectedFont') ?? 'Indopak'; // Load selected font
+      backgroundColor = Color(prefs.getInt('backgroundColor') ?? 0xffdfe6e3); // Load background color
+      textColor = Color(prefs.getInt('textColor') ?? Colors.black.value); // Load text color
     });
   }
 
-  Future<void> saveFontSettings(double fontSize) async {
+  Future<void> saveSettings(double fontSize, String selectedFont, Color backgroundColor, Color textColor) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble('fontSize', fontSize); // Save font size to SharedPreferences
+    await prefs.setDouble('arabicFontSize', fontSize); // Save font size
+    await prefs.setString('selectedFont', selectedFont); // Save font
+    await prefs.setInt('backgroundColor', backgroundColor.value); // Save background color
+    await prefs.setInt('textColor', textColor.value); // Save text color
     setState(() {
-      this.fontSize = fontSize; // Update font size in the state
+      this.fontSize = fontSize;
+      this.selectedFont = selectedFont;
+      this.backgroundColor = backgroundColor;
+      this.textColor = textColor;
     });
   }
 
@@ -57,7 +69,7 @@ class _SalamScreenState extends State<SalamScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(150.0),
         child: AppBar(
-          backgroundColor: Colors.purple,
+          backgroundColor: Color(0xFF3c7962), // Same color as AsmaUlHusnaScreen
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
@@ -75,11 +87,30 @@ class _SalamScreenState extends State<SalamScreen> {
                     return StatefulBuilder(
                       builder: (context, setState) {
                         return AlertDialog(
-                          title: Text('Font Size'),
+                          title: Text('Settings'),
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              // Arabic Font Selection Dropdown
                               Text('Arabic Font'),
+                              DropdownButton<String>(
+                                value: selectedFont,
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    selectedFont = newValue!;
+                                    saveSettings(fontSize, selectedFont, backgroundColor, textColor);
+                                  });
+                                },
+                                items: ['Indopak', 'Muhamadi', 'Musharaf', 'Qalam', 'Saleem'].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+
+                              // Font Size Slider
+                              Text('Arabic Font Size'),
                               Slider(
                                 value: fontSize,
                                 min: 20,
@@ -89,15 +120,48 @@ class _SalamScreenState extends State<SalamScreen> {
                                   setState(() {
                                     fontSize = value;
                                   });
-                                  saveFontSettings(fontSize);
+                                  saveSettings(fontSize, selectedFont, backgroundColor, textColor);
                                 },
                               ),
-                              ElevatedButton(
+
+                              // Color Pickers for Background and Text
+                              TextButton(
                                 onPressed: () {
-                                  saveFontSettings(fontSize); // Save font size when done button is pressed
-                                  Navigator.pop(context);
+                                  pickColor(context, true); // Pick background color
                                 },
-                                child: Text('Done'),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 24,
+                                      height: 24,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: backgroundColor,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text('Background Color'),
+                                  ],
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  pickColor(context, false); // Pick text color
+                                },
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 24,
+                                      height: 24,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: textColor,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text('Text Color'),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
@@ -111,7 +175,7 @@ class _SalamScreenState extends State<SalamScreen> {
           ],
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: Colors.purple,
+              color: Color(0xFF3c7962), // Same color as AppBar background
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
             ),
             child: Padding(
@@ -146,7 +210,7 @@ class _SalamScreenState extends State<SalamScreen> {
       bottomNavigationBar: Container( // Add bottom bar with low height
         height: 30,
         decoration: BoxDecoration(
-          color: Colors.purple.shade300,
+          color: Color(0xFF3c7962), // Same color as AppBar
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),
@@ -161,7 +225,7 @@ class _SalamScreenState extends State<SalamScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.purple.shade50,
+                color: backgroundColor, // Use the selected background color
                 borderRadius: BorderRadius.circular(10),
               ),
               padding: EdgeInsets.all(16),
@@ -172,8 +236,8 @@ class _SalamScreenState extends State<SalamScreen> {
                     arabicText,
                     style: TextStyle(
                       fontSize: fontSize,
-                      fontFamily: 'Indopak', // Use the Indopak font family for Arabic text
-                      color: Colors.black,
+                      fontFamily: selectedFont, // Use the selected font for Arabic text
+                      color: textColor, // Use the selected text color
                       fontWeight: FontWeight.w600,
                     ),
                     textAlign: TextAlign.center,
@@ -184,6 +248,41 @@ class _SalamScreenState extends State<SalamScreen> {
           );
         },
       ),
+    );
+  }
+
+  // Color picker method
+  void pickColor(BuildContext context, bool isBackground) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(isBackground ? 'Pick Background Color' : 'Pick Text Color'),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: isBackground ? backgroundColor : textColor,
+              onColorChanged: (color) {
+                setState(() {
+                  if (isBackground) {
+                    backgroundColor = color;
+                  } else {
+                    textColor = color;
+                  }
+                });
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text('Select'),
+              onPressed: () {
+                saveSettings(fontSize, selectedFont, backgroundColor, textColor);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
